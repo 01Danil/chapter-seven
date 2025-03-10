@@ -13,8 +13,13 @@ function Checkbox() {
     console.log(checked ? "Yes, chacked" : "No, not checked");
   });
 	*/
+  /*
   useEffect(() => {
     localStorage.setItem("checkbox-value", checked);
+  });
+	*/
+  useEffect(() => {
+    txtInputRef.current.focus();
   });
 
   return (
