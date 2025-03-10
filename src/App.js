@@ -10,6 +10,17 @@ function App() {
     setPhrase(val);
     set("");
   };
+  const [posts, setPosts] = useState([]);
+  const addPost = (post) => setPosts((allPosts) => [post, ...allPosts]);
+
+  useEffect(() => {
+    newsFeed.subscribe(addPost);
+    welcomeChime.play();
+    return () => {
+      newsFeed.unsubscibe(addPost);
+      goodbyeChime.play();
+    };
+  }, []);
 
   useEffect(() => {
     console.log(`typing "${val}"`);
