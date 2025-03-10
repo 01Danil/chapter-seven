@@ -15,12 +15,37 @@ function App() {
 
   useEffect(() => {
     newsFeed.subscribe(addPost);
-    welcomeChime.play();
     return () => {
       newsFeed.unsubscibe(addPost);
+    };
+  }, []);
+
+  useEffect(() => {
+    welcomeChime.play();
+    return () => {
       goodbyeChime.play();
     };
   }, []);
+
+  const useJazzyNews = () => {
+    const [posts, setPosts] = useState([]);
+    const addPost = (post) => setPosts((allPosts) => [post, ...addPost]);
+
+    useEffect(() => {
+      newsFeed.subscribe(addPost);
+      return () => {
+        newsFeed.unsubscibe(addPost);
+      };
+    }, []);
+
+    useEffect(() => {
+      welcomeChime.play();
+      return () => {
+        goodbyeChime.play();
+      };
+    }, []);
+    return posts;
+  };
 
   useEffect(() => {
     console.log(`typing "${val}"`);
