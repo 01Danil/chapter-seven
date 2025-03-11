@@ -87,4 +87,71 @@ function App() {
   );
 }
 
+const useAnyKeyToRender = () => {
+  const [, forceRender] = useState();
+
+  useEffect(() => {
+    window.addEventListener("keydown", forceRender);
+    return () => {
+      window.removeEventListener("keydown", forceRender);
+    };
+  }, []);
+};
+
 export default App;
+
+function App() {
+  useAnyKeyToRender();
+
+  useEffect(() => {
+    console.log("fresh render");
+  });
+
+  return <h1>Open console</h1>;
+}
+
+const word = "gnar";
+useEffect(() => {
+  console.log("fresh render");
+}, [word]);
+
+/*
+const words = ["sick", "power", "day"];
+useEffect(() => {
+	console.log("fresh render");
+}, [words]);
+*/
+
+const words = ["sick", "powder", "day"];
+
+function App() {
+  useAnyKeyToRender();
+  useEffect(() => {
+    console.log("fresh render");
+  }, [words]);
+
+  return <h1>component</h1>;
+}
+
+function WordCount({ children = "" }) {
+  useAnyKeyToRender();
+
+  const words = children.split(" ");
+
+  useEffect(() => {
+    console.log("fresh render");
+  }, [words]);
+
+  return (
+    <>
+      <p>{children}</p>
+      <p>
+        <strong>{words.length} - words</strong>
+      </p>
+    </>
+  );
+}
+
+function App() {
+  return <WordCount>You are not going to believe this but...</WordCount>;
+}
