@@ -22,6 +22,7 @@ useEffect(() => {
 }, [fn]);
 */
 
+/*
 const useJazzyNews = () => {
   const [_posts, setPosts] = useState([]);
   const addPost = (post) => setPosts((allPosts) => [post, ...allPosts]);
@@ -45,3 +46,4 @@ const useJazzyNews = () => {
   }, []);
   return posts;
 };
+*/
